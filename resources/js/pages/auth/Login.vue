@@ -10,12 +10,41 @@ import AuthBase from '@/layouts/AuthLayout.vue';
 import { register } from '@/routes';
 import { request } from '@/routes/password';
 import { Form, Head } from '@inertiajs/vue3';
-import { LoaderCircle } from 'lucide-vue-next';
+import { LoaderCircle, Crown, Shield } from 'lucide-vue-next';
+import { ref } from 'vue';
 
 defineProps<{
     status?: string;
     canResetPassword: boolean;
 }>();
+
+const email = ref('');
+const password = ref('');
+const isSubmitting = ref(false);
+
+const loginAsSuperAdmin = () => {
+    email.value = 'superadmin@gmail.com';
+    password.value = 'password';
+    // Trigger form submission after a brief delay to ensure fields are updated
+    setTimeout(() => {
+        const form = document.querySelector('form');
+        if (form) {
+            form.requestSubmit();
+        }
+    }, 100);
+};
+
+const loginAsAdmin = () => {
+    email.value = 'admin@gmail.com';
+    password.value = 'password';
+    // Trigger form submission after a brief delay to ensure fields are updated
+    setTimeout(() => {
+        const form = document.querySelector('form');
+        if (form) {
+            form.requestSubmit();
+        }
+    }, 100);
+};
 </script>
 
 <template>
@@ -43,6 +72,7 @@ defineProps<{
                     <Label for="email">Email address</Label>
                     <Input
                         id="email"
+                        v-model="email"
                         type="email"
                         name="email"
                         required
@@ -68,6 +98,7 @@ defineProps<{
                     </div>
                     <Input
                         id="password"
+                        v-model="password"
                         type="password"
                         name="password"
                         required
@@ -105,5 +136,39 @@ defineProps<{
                 <TextLink :href="register()" :tabindex="5">Sign up</TextLink>
             </div>
         </Form>
+
+        <!-- Direct Login Buttons -->
+        <div class="mt-8">
+            <div class="relative">
+                <div class="absolute inset-0 flex items-center">
+                    <span class="w-full border-t" />
+                </div>
+                <div class="relative flex justify-center text-xs uppercase">
+                    <span class="bg-background px-2 text-muted-foreground">Quick Login</span>
+                </div>
+            </div>
+            
+            <div class="mt-6 grid grid-cols-1 gap-3">
+                <Button
+                    type="button"
+                    variant="outline"
+                    class="w-full"
+                    @click="loginAsSuperAdmin"
+                >
+                    <Crown class="mr-2 h-4 w-4" />
+                    Login as Super Admin
+                </Button>
+                
+                <Button
+                    type="button"
+                    variant="outline"
+                    class="w-full"
+                    @click="loginAsAdmin"
+                >
+                    <Shield class="mr-2 h-4 w-4" />
+                    Login as Admin
+                </Button>
+            </div>
+        </div>
     </AuthBase>
 </template>
