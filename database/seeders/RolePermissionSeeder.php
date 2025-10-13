@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -18,44 +20,53 @@ class RolePermissionSeeder extends Seeder
 
         // Create permissions
         $permissions = [
-            'view-dashboard',
-            'manage-users',
-            'manage-roles',
-            'manage-permissions',
-            'view-settings',
-            'edit-settings',
-            'view-reports',
-            'manage-content',
-            'delete-content',
-            'publish-content',
+            // User CRUD permissions
+            'create users',
+            'read users',
+            'update users',
+            'delete users',
+            
+            // Role CRUD permissions
+            'create roles',
+            'read roles',
+            'update roles',
+            'delete roles',
         ];
 
         foreach ($permissions as $permission) {
-            Permission::create(['name' => $permission, 'guard_name' => 'web']);
+            Permission::create(['name' => $permission]);
         }
 
-        // Create roles and assign permissions
-        $adminRole = Role::create(['name' => 'admin', 'guard_name' => 'web']);
-        $adminRole->givePermissionTo(Permission::all());
+        // Create roles
+        $superAdminRole = Role::create(['name' => 'super-admin']);
+        $adminRole = Role::create(['name' => 'admin']);
 
-        $editorRole = Role::create(['name' => 'editor', 'guard_name' => 'web']);
-        $editorRole->givePermissionTo([
-            'view-dashboard',
-            'manage-content',
-            'publish-content',
-            'view-reports',
+        // Assign all permissions to super-admin
+        $superAdminRole->givePermissionTo(Permission::all());
+
+        // Assign limited permissions to admin (only read permissions)
+        $adminRole->givePermissionTo([
+            'read users',
+            'read roles',
         ]);
 
-        $authorRole = Role::create(['name' => 'author', 'guard_name' => 'web']);
-        $authorRole->givePermissionTo([
-            'view-dashboard',
-            'manage-content',
-            'publish-content',
+        // Create users
+        $superAdmin = User::create([
+            'name' => 'Super Administrator',
+            'email' => 'superadmin@gmail.com',
+            'password' => Hash::make('password'),
+            'email_verified_at' => now(),
         ]);
 
-        $userRole = Role::create(['name' => 'user', 'guard_name' => 'web']);
-        $userRole->givePermissionTo([
-            'view-dashboard',
+        $admin = User::create([
+            'name' => 'Administrator',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('password'),
+            'email_verified_at' => now(),
         ]);
+
+        // Assign roles to users
+        $superAdmin->assignRole('super-admin');
+        $admin->assignRole('admin');
     }
 }
