@@ -1,6 +1,13 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import StrikingDashNavbar from '@/components/StrikingDashNavbar.vue';
 import StrikingDashSidebar from '@/components/StrikingDashSidebar.vue';
+
+const isSidebarCollapsed = ref(false);
+
+const toggleSidebar = () => {
+    isSidebarCollapsed.value = !isSidebarCollapsed.value;
+};
 </script>
 
 <template>
@@ -18,11 +25,13 @@ import StrikingDashSidebar from '@/components/StrikingDashSidebar.vue';
         <div class="mobile-author-actions"></div>
         <!-- Mobile Author actions End -->
 
-        <StrikingDashNavbar />
-        <StrikingDashSidebar />
+        <StrikingDashNavbar :toggle-sidebar="toggleSidebar" />
+        <StrikingDashSidebar :is-collapsed="isSidebarCollapsed" />
         
         <main class="main-content">
-            <slot />
+            <div class="contents" :class="{ 'expanded': isSidebarCollapsed }">
+                <slot />
+            </div>
         </main>
     </div>
 </template>

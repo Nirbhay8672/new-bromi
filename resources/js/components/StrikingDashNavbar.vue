@@ -2,6 +2,10 @@
 import { ref } from 'vue';
 import { Link } from '@inertiajs/vue3';
 
+defineProps<{
+    toggleSidebar: () => void;
+}>();
+
 const isSearchOpen = ref(false);
 const isProfileOpen = ref(false);
 const isNotificationOpen = ref(false);
@@ -29,7 +33,7 @@ const toggleLanguage = () => {
     <header class="header-top">
         <nav class="navbar navbar-light">
             <div class="navbar-left">
-                <a href="" class="sidebar-toggle">
+                <a href="javascript:;" class="sidebar-toggle" @click="toggleSidebar">
                     <img class="svg" src="/img/svg/bars.svg" alt="img">
                 </a>
                 <a class="navbar-brand" href="#">

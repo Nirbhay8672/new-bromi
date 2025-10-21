@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AppLayout from '@/layouts/AppLayout.vue';
+import StrikingDashLayout from '@/layouts/StrikingDashLayout.vue';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -161,10 +161,18 @@ const showAlert = (message: string, type: 'success' | 'error') => {
 <template>
     <Head title="User Management" />
     
-    <AppLayout>
-        <div class="p-6">
-            <div class="flex justify-between items-center mb-6">
-                <h1 class="text-2xl font-bold">User Management</h1>
+    <StrikingDashLayout>
+        <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb-main">
+                            <h4 class="text-capitalize breadcrumb-title">User Management</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h1 class="text-2xl font-bold">User Management</h1>
                 <Button @click="openAddModal" class="flex items-center gap-2">
                     <Plus class="h-4 w-4" />
                     Add User
@@ -305,8 +313,7 @@ const showAlert = (message: string, type: 'success' | 'error') => {
                         </form>
                     </div>
                 </div>
-            </div>
         </div>
-    </AppLayout>
+    </StrikingDashLayout>
 </template>
 
