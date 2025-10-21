@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Traits\HasPermissionChecks;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use Inertia\Response;
 use Spatie\Permission\Models\Role;
@@ -15,13 +19,13 @@ class AdminController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        // Middleware is handled by route groups
     }
 
     /**
      * Display the admin dashboard
      */
-    public function dashboard(): Response
+    public function dashboard(): Response|RedirectResponse
     {
         // Check if user has permission to view dashboard
         if ($redirect = $this->requirePermission('view-dashboard')) {
@@ -34,7 +38,7 @@ class AdminController extends Controller
     /**
      * Display roles management page
      */
-    public function roles(): Response
+    public function roles(): Response|RedirectResponse
     {
         // Check if user has permission to manage roles
         if ($redirect = $this->requirePermission('manage-roles')) {
@@ -51,7 +55,7 @@ class AdminController extends Controller
     /**
      * Display permissions management page
      */
-    public function permissions(): Response
+    public function permissions(): Response|RedirectResponse
     {
         // Check if user has permission to manage permissions
         if ($redirect = $this->requirePermission('manage-permissions')) {
@@ -68,7 +72,7 @@ class AdminController extends Controller
     /**
      * Display users management page
      */
-    public function users(): Response
+    public function users(): Response|RedirectResponse
     {
         // Check if user has permission to manage users
         if ($redirect = $this->requirePermission('manage-users')) {
@@ -144,5 +148,101 @@ class AdminController extends Controller
         $role->revokePermissionTo($request->permission);
 
         return redirect()->back()->with('success', 'Permission revoked from role successfully.');
+    }
+
+    /**
+     * Store or update user (single method for both add and update)
+     */
+    public function storeUser(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users,email,' . ($request->user_id ?? 'NULL'),
+                'password' => $request->user_id ? 'nullable|string|min:8' : 'required|string|min:8',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Validation failed',
+                    'errors' => $validator->errors()
+                ], 422);
+            }
+
+            $userData = [
+                'name' => $request->name,
+                'email' => $request->email,
+            ];
+
+            // Only hash password if provided
+            if ($request->password) {
+                $userData['password'] = Hash::make($request->password);
+            }
+
+            if ($request->user_id) {
+                // Update existing user
+                $user = User::findOrFail($request->user_id);
+                $user->update($userData);
+                $message = 'User updated successfully';
+            } else {
+                // Create new user
+                $user = User::create($userData);
+                $message = 'User created successfully';
+            }
+
+            // Always assign admin role
+            $user->assignRole('admin');
+
+            return response()->json([
+                'success' => true,
+                'message' => $message,
+                'user' => $user->load('roles')
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred: ' . $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * Update user (alias for storeUser for consistency)
+     */
+    public function updateUser(Request $request, User $user)
+    {
+        $request->merge(['user_id' => $user->id]);
+        return $this->storeUser($request);
+    }
+
+    /**
+     * Delete user
+     */
+    public function deleteUser(User $user)
+    {
+        try {
+            // Prevent deleting super admin
+            if ($user->hasRole('super-admin')) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Cannot delete super admin user'
+                ], 403);
+            }
+
+            $user->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'User deleted successfully'
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred: ' . $e->getMessage()
+            ], 500);
+        }
     }
 }

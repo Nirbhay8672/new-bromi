@@ -1,10 +1,14 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome');
+    if (Auth::check()) {
+        return redirect()->route('dashboard');
+    }
+    return redirect()->route('login');
 })->name('home');
 
 Route::get('dashboard', function () {
@@ -28,6 +32,19 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('/users', [App\Http\Controllers\AdminController::class, 'users'])
         ->middleware('permission:manage-users')
         ->name('users');
+    
+    // User CRUD API routes
+    Route::post('/users', [App\Http\Controllers\AdminController::class, 'storeUser'])
+        ->middleware('permission:create users')
+        ->name('users.store');
+    
+    Route::put('/users/{user}', [App\Http\Controllers\AdminController::class, 'updateUser'])
+        ->middleware('permission:update users')
+        ->name('users.update');
+    
+    Route::delete('/users/{user}', [App\Http\Controllers\AdminController::class, 'deleteUser'])
+        ->middleware('permission:delete users')
+        ->name('users.delete');
     
     // Role management actions
     Route::post('/assign-role', [App\Http\Controllers\AdminController::class, 'assignRole'])

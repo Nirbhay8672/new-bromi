@@ -20,17 +20,29 @@ class RolePermissionSeeder extends Seeder
 
         // Create permissions
         $permissions = [
+            // Dashboard permissions
+            'view-dashboard',
+            
             // User CRUD permissions
             'create users',
             'read users',
             'update users',
             'delete users',
+            'manage-users',
             
             // Role CRUD permissions
             'create roles',
             'read roles',
             'update roles',
             'delete roles',
+            'manage-roles',
+            
+            // Permission CRUD permissions
+            'create permissions',
+            'read permissions',
+            'update permissions',
+            'delete permissions',
+            'manage-permissions',
         ];
 
         foreach ($permissions as $permission) {
@@ -44,10 +56,13 @@ class RolePermissionSeeder extends Seeder
         // Assign all permissions to super-admin
         $superAdminRole->givePermissionTo(Permission::all());
 
-        // Assign limited permissions to admin (only read permissions)
+        // Assign limited permissions to admin
         $adminRole->givePermissionTo([
+            'view-dashboard',
             'read users',
             'read roles',
+            'read permissions',
+            'manage-users', // Can access user management page
         ]);
 
         // Create users
