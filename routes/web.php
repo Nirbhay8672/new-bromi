@@ -15,6 +15,10 @@ Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('index-test', function () {
+    return Inertia::render('IndexTest');
+})->name('index-test');
+
 // Admin routes with role/permission middleware
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])
