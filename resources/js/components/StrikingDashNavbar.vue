@@ -53,10 +53,10 @@ const handleLogout = () => {
         <nav class="navbar navbar-light">
             <div class="navbar-left">
                 <a href="javascript:;" class="sidebar-toggle" @click="toggleSidebar">
-                    <img class="svg" src="/img/svg/bars.svg" alt="img">
+                    <img class="svg" :src="'/img/svg/bars.svg'" alt="img">
                 </a>
                 <a class="navbar-brand" href="#">
-                    <img class="dark" src="/logo4.png" alt="svg">
+                    <img class="dark" :src="'/logo4.png'" alt="svg">
                 </a>
                 <form action="#" class="search-form">
                     <span data-feather="search"></span>
@@ -188,13 +188,13 @@ const handleLogout = () => {
                     <li class="nav-flag-select">
                         <div class="dropdown-custom">
                             <a href="javascript:;" class="nav-item-toggle" @click="toggleLanguage">
-                                <img src="/img/flag.png" alt="" class="rounded-circle">
+                                <img :src="'/img/flag.png'" alt="" class="rounded-circle">
                             </a>
                             <div class="dropdown-wrapper dropdown-wrapper--small" v-show="isLanguageOpen">
-                                <a href=""><img src="/img/eng.png" alt=""> English</a>
-                                <a href=""><img src="/img/ger.png" alt=""> German</a>
-                                <a href=""><img src="/img/spa.png" alt=""> Spanish</a>
-                                <a href=""><img src="/img/tur.png" alt=""> Turkish</a>
+                                <a href=""><img :src="'/img/eng.png'" alt=""> English</a>
+                                <a href=""><img :src="'/img/ger.png'" alt=""> German</a>
+                                <a href=""><img :src="'/img/spa.png'" alt=""> Spanish</a>
+                                <a href=""><img :src="'/img/tur.png'" alt=""> Turkish</a>
                             </div>
                         </div>
                     </li>
