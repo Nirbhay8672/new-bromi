@@ -12,7 +12,11 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('dashboard', function () {
-    return Inertia::render('Dashboard');
+    $totalUsers = \App\Models\User::count();
+    
+    return Inertia::render('Dashboard', [
+        'totalUsers' => $totalUsers
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('index-test', function () {

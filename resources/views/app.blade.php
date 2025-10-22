@@ -93,6 +93,15 @@
         <script>
             // Initialize Feather icons
             feather.replace();
+            
+            // Reinitialize icons after Vue components mount
+            document.addEventListener('DOMContentLoaded', function() {
+                setTimeout(() => {
+                    if (typeof feather !== 'undefined') {
+                        feather.replace();
+                    }
+                }, 100);
+            });
         </script>
     </body>
 </html>

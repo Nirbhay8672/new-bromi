@@ -1,11 +1,25 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Link, router } from '@inertiajs/vue3';
+import { Link, router, usePage } from '@inertiajs/vue3';
 import { logout } from '@/routes';
 
 defineProps<{
     toggleSidebar: () => void;
 }>();
+
+const page = usePage();
+const user = page.props.auth.user;
+
+// Function to get user initials
+const getInitials = (name: string) => {
+    if (!name) return 'U';
+    return name
+        .split(' ')
+        .map(word => word.charAt(0))
+        .join('')
+        .toUpperCase()
+        .slice(0, 2);
+};
 
 const isSearchOpen = ref(false);
 const isProfileOpen = ref(false);
@@ -187,16 +201,26 @@ const handleLogout = () => {
                     <li class="nav-author">
                         <div class="dropdown-custom">
                             <a href="javascript:;" class="nav-item-toggle" @click="toggleProfile">
-                                <img src="/img/author-nav.jpg" alt="" class="rounded-circle">
+                                <div v-if="user?.profile_photo_url" class="profile-image">
+                                    <img :src="user.profile_photo_url" :alt="user.name" class="rounded-circle">
+                                </div>
+                                <div v-else class="profile-initials rounded-circle d-flex align-items-center justify-content-center">
+                                    {{ getInitials(user?.name || 'User') }}
+                                </div>
                             </a>
                             <div class="dropdown-wrapper" v-show="isProfileOpen">
                                 <div class="nav-author__info">
                                     <div class="author-img">
-                                        <img src="/img/author-nav.jpg" alt="" class="rounded-circle">
+                                        <div v-if="user?.profile_photo_url" class="profile-image">
+                                            <img :src="user.profile_photo_url" :alt="user.name" class="rounded-circle">
+                                        </div>
+                                        <div v-else class="profile-initials rounded-circle d-flex align-items-center justify-content-center">
+                                            {{ getInitials(user?.name || 'User') }}
+                                        </div>
                                     </div>
                                     <div>
-                                        <h6>Abdullah Bin Talha</h6>
-                                        <span>UI Designer</span>
+                                        <h6>{{ user?.name || 'User' }}</h6>
+                                        <span>{{ user?.email || 'No Email' }}</span>
                                     </div>
                                 </div>
                                 <div class="nav-author__options">

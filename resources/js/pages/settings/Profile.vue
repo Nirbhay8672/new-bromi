@@ -201,28 +201,6 @@ const user = page.props.auth.user;
                             </div>
                         </div>
                     </div>
-
-                    <!-- Delete Account Section -->
-                    <div class="card">
-                        <div class="card-header bg-danger text-white">
-                            <h5 class="mb-0">
-                                <span data-feather="trash-2" class="me-2"></span>
-                                Danger Zone
-                            </h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="alert alert-danger">
-                                <div class="d-flex align-items-start">
-                                    <span data-feather="alert-triangle" class="me-2 mt-1"></span>
-                                    <div>
-                                        <strong>Delete Account</strong>
-                                        <p class="mb-0">Permanently delete your account and all of its data. This action cannot be undone.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <DeleteUser />
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
