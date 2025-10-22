@@ -22,4 +22,5 @@ export default defineConfig({
             },
         }),
     ],
+    base: process.env.ASSET_URL ? process.env.ASSET_URL + '/' : '/',
 });

@@ -59,9 +59,6 @@
         <!-- Date Range Picker CSS -->
         <link rel="stylesheet" href="/assets/vendor_assets/css/daterangepicker.css">
         
-        <!-- Theme CSS -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
         @vite(['resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])
         @inertiaHead
     </head>
@@ -82,8 +79,17 @@
         
         <!-- Other required JS -->
         <script src="/assets/vendor_assets/js/select2.full.min.js"></script>
+        <script src="/assets/vendor_assets/js/moment/moment.min.js"></script>
         <script src="/assets/vendor_assets/js/daterangepicker.js"></script>
-        <script src="/assets/vendor_assets/js/moment.min.js"></script>
+        
+        <!-- Additional jQuery plugins -->
+        <script src="/assets/vendor_assets/js/jquery.magnific-popup.min.js"></script>
+        <script src="/assets/vendor_assets/js/slick.min.js"></script>
+        <script src="/assets/vendor_assets/js/jquery.peity.min.js"></script>
+        <script src="/assets/vendor_assets/js/jquery.star-rating-svg.min.js"></script>
+        <script src="/assets/vendor_assets/js/jquery.countdown.min.js"></script>
+        <script src="/assets/vendor_assets/js/trumbowyg.min.js"></script>
+        <script src="/assets/vendor_assets/js/wickedpicker.min.js"></script>
         
         <!-- Main JS -->
         <script src="/assets/theme_assets/js/main.js"></script>
