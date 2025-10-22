@@ -32,9 +32,9 @@
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
-        <link rel="icon" href="/favicon.png" type="image/png">
-        <link rel="shortcut icon" href="/favicon.png" type="image/png">
-        <link rel="apple-touch-icon" href="/favicon.png">
+        <link rel="icon" href="{{ asset('favicon.png') }}" type="image/png">
+        <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/png">
+        <link rel="apple-touch-icon" href="{{ asset('favicon.png') }}">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,16 +48,16 @@
         
         
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="/assets/vendor_assets/css/bootstrap/bootstrap.css">
+        <link rel="stylesheet" href="{{ asset('assets/vendor_assets/css/bootstrap/bootstrap.css') }}">
         
         <!-- jQuery UI CSS -->
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/ui-lightness/jquery-ui.css">
         
         <!-- Select2 CSS -->
-        <link rel="stylesheet" href="/assets/vendor_assets/css/select2.min.css">
+        <link rel="stylesheet" href="{{ asset('assets/vendor_assets/css/select2.min.css') }}">
         
         <!-- Date Range Picker CSS -->
-        <link rel="stylesheet" href="/assets/vendor_assets/css/daterangepicker.css">
+        <link rel="stylesheet" href="{{ asset('assets/vendor_assets/css/daterangepicker.css') }}">
         
         @vite(['resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])
         @inertiaHead
@@ -66,33 +66,33 @@
         @inertia
         
         <!-- jQuery -->
-        <script src="/assets/vendor_assets/js/jquery/jquery-3.5.1.min.js"></script>
+        <script src="{{ asset('assets/vendor_assets/js/jquery/jquery-3.5.1.min.js') }}"></script>
         
         <!-- jQuery UI -->
-        <script src="/assets/vendor_assets/js/jquery/jquery-ui.js"></script>
+        <script src="{{ asset('assets/vendor_assets/js/jquery/jquery-ui.js') }}"></script>
         
         <!-- Bootstrap JS -->
-        <script src="/assets/vendor_assets/js/bootstrap/bootstrap.min.js"></script>
+        <script src="{{ asset('assets/vendor_assets/js/bootstrap/bootstrap.min.js') }}"></script>
         
         <!-- Chart.js -->
-        <script src="/assets/vendor_assets/js/Chart.min.js"></script>
+        <script src="{{ asset('assets/vendor_assets/js/Chart.min.js') }}"></script>
         
         <!-- Other required JS -->
-        <script src="/assets/vendor_assets/js/select2.full.min.js"></script>
-        <script src="/assets/vendor_assets/js/moment/moment.min.js"></script>
-        <script src="/assets/vendor_assets/js/daterangepicker.js"></script>
+        <script src="{{ asset('assets/vendor_assets/js/select2.full.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor_assets/js/moment/moment.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor_assets/js/daterangepicker.js') }}"></script>
         
         <!-- Additional jQuery plugins -->
-        <script src="/assets/vendor_assets/js/jquery.magnific-popup.min.js"></script>
-        <script src="/assets/vendor_assets/js/slick.min.js"></script>
-        <script src="/assets/vendor_assets/js/jquery.peity.min.js"></script>
-        <script src="/assets/vendor_assets/js/jquery.star-rating-svg.min.js"></script>
-        <script src="/assets/vendor_assets/js/jquery.countdown.min.js"></script>
-        <script src="/assets/vendor_assets/js/trumbowyg.min.js"></script>
-        <script src="/assets/vendor_assets/js/wickedpicker.min.js"></script>
+        <script src="{{ asset('assets/vendor_assets/js/jquery.magnific-popup.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor_assets/js/slick.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor_assets/js/jquery.peity.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor_assets/js/jquery.star-rating-svg.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor_assets/js/jquery.countdown.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor_assets/js/trumbowyg.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor_assets/js/wickedpicker.min.js') }}"></script>
         
         <!-- Main JS -->
-        <script src="/assets/theme_assets/js/main.js"></script>
+        <script src="{{ asset('assets/theme_assets/js/main.js') }}"></script>
         
     </body>
 </html>
