@@ -30,7 +30,7 @@ export function asset(path: string): string {
                    (isLocal ? 'https://new-bromi.test' : 'https://updates.mrweb.co.in');
     
     const assetUrl = (typeof __ASSET_URL__ !== 'undefined' ? __ASSET_URL__ : '') || 
-                    (isLocal ? '' : '/growedge/public');
+                    (isLocal ? '' : '/public');
     
     // For Vite-processed assets (contain hash)
     if (cleanPath.includes('assets/') && cleanPath.includes('-')) {
@@ -216,5 +216,5 @@ export function testAssetUrls(): void {
     console.log('Common asset logo main:', getCommonAsset('logo', 'main'));
     console.log('Common asset illustrations signup:', getCommonAsset('illustrations', 'signup'));
     console.log('');
-    console.log('Expected Production URL: https://updates.mrweb.co.in/growedge/public/logo4.png');
+    console.log('Expected Production URL: https://updates.mrweb.co.in/public/logo4.png');
 }
