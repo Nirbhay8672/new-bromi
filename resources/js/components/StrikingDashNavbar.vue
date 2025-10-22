@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { Link, router, usePage } from '@inertiajs/vue3';
 import { logout } from '@/routes';
+import { assets, getCommonAsset } from '@/lib/assets';
 
 defineProps<{
     toggleSidebar: () => void;
@@ -53,10 +54,10 @@ const handleLogout = () => {
         <nav class="navbar navbar-light">
             <div class="navbar-left">
                 <a href="javascript:;" class="sidebar-toggle" @click="toggleSidebar">
-                    <img class="svg" :src="'/img/svg/bars.svg'" alt="img">
+                    <img class="svg" :src="getCommonAsset('icons', 'bars')" alt="img">
                 </a>
                 <a class="navbar-brand" href="#">
-                    <img class="dark" :src="'/logo4.png'" alt="svg">
+                    <img class="dark" :src="getCommonAsset('logo', 'main')" alt="svg">
                 </a>
                 <form action="#" class="search-form">
                     <span data-feather="search"></span>
@@ -188,13 +189,13 @@ const handleLogout = () => {
                     <li class="nav-flag-select">
                         <div class="dropdown-custom">
                             <a href="javascript:;" class="nav-item-toggle" @click="toggleLanguage">
-                                <img :src="'/img/flag.png'" alt="" class="rounded-circle">
+                                <img :src="getCommonAsset('icons', 'flag')" alt="" class="rounded-circle">
                             </a>
                             <div class="dropdown-wrapper dropdown-wrapper--small" v-show="isLanguageOpen">
-                                <a href=""><img :src="'/img/eng.png'" alt=""> English</a>
-                                <a href=""><img :src="'/img/ger.png'" alt=""> German</a>
-                                <a href=""><img :src="'/img/spa.png'" alt=""> Spanish</a>
-                                <a href=""><img :src="'/img/tur.png'" alt=""> Turkish</a>
+                                <a href=""><img :src="getCommonAsset('icons', 'eng')" alt=""> English</a>
+                                <a href=""><img :src="getCommonAsset('icons', 'ger')" alt=""> German</a>
+                                <a href=""><img :src="getCommonAsset('icons', 'spa')" alt=""> Spanish</a>
+                                <a href=""><img :src="getCommonAsset('icons', 'tur')" alt=""> Turkish</a>
                             </div>
                         </div>
                     </li>

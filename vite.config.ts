@@ -23,4 +23,29 @@ export default defineConfig({
         }),
     ],
     base: process.env.ASSET_URL ? process.env.ASSET_URL + '/' : (process.env.NODE_ENV === 'production' ? '/growedge/' : '/'),
+    build: {
+        rollupOptions: {
+            output: {
+                assetFileNames: (assetInfo) => {
+                    const info = assetInfo.name.split('.');
+                    const ext = info[info.length - 1];
+                    if (/\.(png|jpe?g|gif|svg|ico|webp)$/i.test(assetInfo.name)) {
+                        return `assets/images/[name]-[hash][extname]`;
+                    }
+                    if (/\.(css)$/i.test(assetInfo.name)) {
+                        return `assets/css/[name]-[hash][extname]`;
+                    }
+                    if (/\.(js)$/i.test(assetInfo.name)) {
+                        return `assets/js/[name]-[hash][extname]`;
+                    }
+                    return `assets/[name]-[hash][extname]`;
+                },
+            },
+        },
+    },
+    server: {
+        hmr: {
+            host: 'localhost',
+        },
+    },
 });

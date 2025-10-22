@@ -8,7 +8,8 @@ import { register } from '@/routes';
 import { request } from '@/routes/password';
 import { Form, Head, Link } from '@inertiajs/vue3';
 import { LoaderCircle, Crown, Shield } from 'lucide-vue-next';
-import { ref, onMounted, nextTick } from 'vue'; 
+import { ref, onMounted, nextTick } from 'vue';
+import { assets, getCommonAsset } from '@/lib/assets'; 
 
 defineProps<{
     status?: string;
@@ -56,11 +57,11 @@ const loginAsAdmin = () => {
                     <div class="signUP-admin-left signIn-admin-left position-relative">
                         <div class="signUP-admin-left__content">
                             <div class="text-capitalize mb-md-30 mb-15 d-flex align-items-center justify-content-md-start justify-content-center">
-                                <img :src="'/logo4.png'" alt="logo" class="img-fluid" style="max-width: 400px;" />
+                                <img :src="getCommonAsset('logo', 'main')" alt="logo" class="img-fluid" style="max-width: 400px;" />
                             </div>
                         </div>
                         <div class="signUP-admin-left__img">
-                            <img class="img-fluid svg" :src="'/img/svg/signupIllustration.svg'" alt="img" />
+                            <img class="img-fluid svg" :src="getCommonAsset('illustrations', 'signup')" alt="img" />
                         </div>
                     </div>
                 </div>
