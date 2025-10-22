@@ -37,8 +37,7 @@ const toggleLanguage = () => {
                     <img class="svg" src="/img/svg/bars.svg" alt="img">
                 </a>
                 <a class="navbar-brand" href="#">
-                    <img class="dark" src="/img/logo_dark.png" alt="svg">
-                    <img class="light" src="/img/logo_white.png" alt="img">
+                    <img class="dark" src="/logo4.png" alt="svg">
                 </a>
                 <form action="#" class="search-form">
                     <span data-feather="search"></span>
@@ -198,13 +197,23 @@ const toggleLanguage = () => {
                                 <div class="nav-author__options">
                                     <ul>
                                         <li>
-                                            <Link href="/profile">
+                                            <Link href="/settings/profile">
                                                 <span data-feather="user"></span> Profile
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href="/settings">
-                                                <span data-feather="settings"></span> Settings
+                                            <Link href="/settings/password">
+                                                <span data-feather="lock"></span> Password
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link href="/settings/two-factor">
+                                                <span data-feather="shield"></span> Two-Factor Auth
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link href="/settings/appearance">
+                                                <span data-feather="palette"></span> Appearance
                                             </Link>
                                         </li>
                                         <li>

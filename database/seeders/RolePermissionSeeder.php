@@ -43,6 +43,50 @@ class RolePermissionSeeder extends Seeder
             'update permissions',
             'delete permissions',
             'manage-permissions',
+            
+            // Profile/Settings permissions
+            'view-profile',
+            'update-profile',
+            'delete-profile',
+            'manage-profile',
+            
+            // Password permissions
+            'change-password',
+            'update-password',
+            
+            // Two-Factor Authentication permissions
+            'manage-two-factor',
+            'enable-two-factor',
+            'disable-two-factor',
+            
+            // Appearance permissions
+            'manage-appearance',
+            'update-appearance',
+            
+            // Settings permissions
+            'view-settings',
+            'manage-settings',
+            
+            // Admin permissions
+            'access-admin-panel',
+            'view-admin-dashboard',
+            
+            // Role assignment permissions
+            'assign-roles',
+            'remove-roles',
+            'assign-permissions',
+            'revoke-permissions',
+            
+            // User management permissions
+            'impersonate-users',
+            'suspend-users',
+            'activate-users',
+            
+            // System permissions
+            'view-system-logs',
+            'manage-system-settings',
+            'backup-data',
+            'restore-data',
         ];
 
         foreach ($permissions as $permission) {

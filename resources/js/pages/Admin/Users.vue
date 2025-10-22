@@ -163,21 +163,21 @@ const showAlert = (message: string, type: 'success' | 'error') => {
     
     <StrikingDashLayout>
         <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="breadcrumb-main">
-                            <h4 class="text-capitalize breadcrumb-title">User Management</h4>
-                        </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-main">
+                        <h4 class="text-capitalize breadcrumb-title">User Management</h4>
                     </div>
                 </div>
-                <div class="p-6">
-                    <div class="flex justify-between items-center mb-6">
-                        <h1 class="text-2xl font-bold">User Management</h1>
-                <Button @click="openAddModal" class="flex items-center gap-2">
-                    <Plus class="h-4 w-4" />
-                    Add User
-                </Button>
             </div>
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-2xl font-bold">User Management</h1>
+                    <Button @click="openAddModal" class="flex items-center gap-2">
+                        <Plus class="h-4 w-4" />
+                        Add User
+                    </Button>
+                </div>
 
             <!-- Users Table -->
             <div class="bg-white rounded-lg shadow overflow-hidden">
@@ -313,6 +313,8 @@ const showAlert = (message: string, type: 'success' | 'error') => {
                         </form>
                     </div>
                 </div>
+            </div>
+        </div>
         </div>
     </StrikingDashLayout>
 </template>
