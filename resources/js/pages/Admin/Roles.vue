@@ -37,14 +37,7 @@ const formData = ref({
 const formErrors = ref<Record<string, string>>({});
 const isSubmitting = ref(false);
 
-// Initialize Feather icons
-onMounted(() => {
-    nextTick(() => {
-        if (typeof feather !== 'undefined') {
-            feather.replace();
-        }
-    });
-});
+// No need to initialize icons - using Font Awesome classes directly
 
 const openCreateModal = () => {
     editingRole.value = null;
@@ -227,7 +220,7 @@ const getGeneralPermissions = (permissions: Permission[]) => {
                     <div class="breadcrumb-main d-flex align-items-center justify-content-between">
                         <h4 class="text-capitalize breadcrumb-title mb-0">Roles Management</h4>
                         <button @click="openCreateModal" class="btn btn-primary">
-                            <span data-feather="plus" class="me-2"></span>
+                            <i class="fas fa-plus me-2"></i>
                             Add Role
                         </button>
                     </div>
@@ -238,13 +231,13 @@ const getGeneralPermissions = (permissions: Permission[]) => {
             <div class="card border-0 shadow-sm">
                 <div class="card-header bg-white border-bottom">
                     <h5 class="mb-0 d-flex align-items-center">
-                        <span data-feather="shield" class="me-2 text-primary"></span>
+                        <i class="fas fa-shield-alt me-2 text-primary"></i>
                         Roles & Permissions
                     </h5>
                 </div>
                 <div class="card-body p-0">
                     <div v-if="props.roles.length === 0" class="text-center py-5">
-                        <span data-feather="shield" class="text-muted mb-3" style="width: 48px; height: 48px;"></span>
+                        <i class="fas fa-shield-alt text-muted mb-3" style="font-size: 48px;"></i>
                         <h6 class="text-muted">No roles found</h6>
                         <p class="text-muted mb-0">Click "Add Role" to create your first role.</p>
                     </div>
@@ -267,7 +260,7 @@ const getGeneralPermissions = (permissions: Permission[]) => {
                                             <div class="me-3">
                                                 <div class="avatar-title bg-primary bg-gradient rounded-circle d-flex align-items-center justify-content-center"
                                                      style="width: 40px; height: 40px;">
-                                                    <span data-feather="shield" class="text-white" style="width: 20px; height: 20px;"></span>
+                                                    <i class="fas fa-shield-alt text-white" style="font-size: 20px;"></i>
                                                 </div>
                                             </div>
                                             <div>
@@ -307,7 +300,7 @@ const getGeneralPermissions = (permissions: Permission[]) => {
                                     </td>
                                     <td class="border-0">
                                         <div class="d-flex align-items-center">
-                                            <span data-feather="users" class="me-2 text-muted"></span>
+                                            <i class="fas fa-users me-2 text-muted"></i>
                                             <span class="badge bg-primary">
                                                 {{ role.users_count || 0 }} users
                                             </span>
@@ -315,7 +308,7 @@ const getGeneralPermissions = (permissions: Permission[]) => {
                                     </td>
                                     <td class="border-0">
                                         <div class="d-flex align-items-center">
-                                            <span data-feather="calendar" class="me-2 text-muted"></span>
+                                            <i class="fas fa-calendar me-2 text-muted"></i>
                                             <span class="text-dark">
                                                 {{ formatDate(role.created_at) }}
                                             </span>
@@ -328,7 +321,7 @@ const getGeneralPermissions = (permissions: Permission[]) => {
                                                 class="btn btn-outline-primary btn-sm"
                                                 title="Edit Role"
                                             >
-                                                <span data-feather="edit" class="me-1"></span>
+                                                <i class="fas fa-edit me-1"></i>
                                                 Edit
                                             </button>
                                             <button
@@ -337,7 +330,7 @@ const getGeneralPermissions = (permissions: Permission[]) => {
                                                 :disabled="role.name === 'super-admin'"
                                                 :title="role.name === 'super-admin' ? 'Cannot delete super admin role' : 'Delete Role'"
                                             >
-                                                <span data-feather="trash-2" class="me-1"></span>
+                                                <i class="fas fa-trash me-1"></i>
                                                 Delete
                                             </button>
                                         </div>
@@ -346,7 +339,7 @@ const getGeneralPermissions = (permissions: Permission[]) => {
                                 <tr v-if="props.roles.length === 0">
                                     <td colspan="5" class="text-center py-5">
                                         <div class="d-flex flex-column align-items-center">
-                                            <span data-feather="shield" class="text-muted mb-3" style="width: 48px; height: 48px;"></span>
+                                            <i class="fas fa-shield-alt text-muted mb-3" style="font-size: 48px;"></i>
                                             <h6 class="text-muted">No roles found</h6>
                                             <p class="text-muted mb-0">Click "Add Role" to create your first role.</p>
                                         </div>
@@ -382,7 +375,7 @@ const getGeneralPermissions = (permissions: Permission[]) => {
                     <div class="modal-body">
                         <!-- General Error Alert -->
                         <div v-if="formErrors.general" class="alert alert-danger" role="alert">
-                            <span data-feather="alert-circle" class="me-2"></span>
+                            <i class="fas fa-exclamation-circle me-2"></i>
                             {{ formErrors.general }}
                         </div>
 
@@ -402,11 +395,11 @@ const getGeneralPermissions = (permissions: Permission[]) => {
                                     maxlength="255"
                                 />
                                 <div v-if="formErrors.name" class="invalid-feedback d-block">
-                                    <span data-feather="alert-circle" class="me-1"></span>
+                                    <i class="fas fa-exclamation-circle me-1"></i>
                                     {{ formErrors.name }}
                                 </div>
                                 <div class="form-text">
-                                    <span data-feather="info" class="me-1"></span>
+                                    <i class="fas fa-info-circle me-1"></i>
                                     Use descriptive names like "manager", "editor", or "viewer". Only letters, numbers, spaces, hyphens, and underscores are allowed.
                                 </div>
                             </div>
@@ -460,7 +453,7 @@ const getGeneralPermissions = (permissions: Permission[]) => {
                             :disabled="isSubmitting || !formData.name.trim()"
                         >
                             <span v-if="isSubmitting" class="spinner-border spinner-border-sm me-2" role="status"></span>
-                            <span data-feather="save" v-if="!isSubmitting" class="me-2"></span>
+                            <i class="fas fa-save me-2" v-if="!isSubmitting"></i>
                             {{ isSubmitting ? 'Saving...' : (editingRole ? 'Update Role' : 'Create Role') }}
                         </button>
                     </div>
@@ -480,7 +473,7 @@ const getGeneralPermissions = (permissions: Permission[]) => {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title text-danger">
-                            <span data-feather="alert-triangle" class="me-2"></span>
+                            <i class="fas fa-exclamation-triangle me-2"></i>
                             Delete Role
                         </h5>
                         <button 
@@ -492,7 +485,7 @@ const getGeneralPermissions = (permissions: Permission[]) => {
                     <div class="modal-body">
                         <div class="alert alert-warning">
                             <div class="d-flex align-items-start">
-                                <span data-feather="alert-triangle" class="me-2 mt-1"></span>
+                                <i class="fas fa-exclamation-triangle me-2 mt-1"></i>
                                 <div>
                                     <strong>Warning:</strong> This action cannot be undone.
                                     <p class="mb-0 mt-2">
@@ -517,7 +510,7 @@ const getGeneralPermissions = (permissions: Permission[]) => {
                             class="btn btn-danger"
                             @click="deleteRole"
                         >
-                            <span data-feather="trash-2" class="me-2"></span>
+                            <i class="fas fa-trash me-2"></i>
                             Delete Role
                         </button>
                     </div>

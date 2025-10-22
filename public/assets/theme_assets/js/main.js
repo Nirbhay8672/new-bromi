@@ -81,8 +81,7 @@
     );
   });
 
-  /* feather icon */
-  feather.replace();
+  /* feather icon - removed, using Font Awesome instead */
 
   /* sidebar collapse  */
   const sidebarToggle = document.querySelector(".sidebar-toggle");

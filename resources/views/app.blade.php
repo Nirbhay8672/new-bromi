@@ -46,8 +46,6 @@
         <!-- Line Awesome Icons -->
         <link rel="stylesheet" href="/assets/vendor_assets/css/line-awesome.min.css">
         
-        <!-- Feather Icons -->
-        <script src="/assets/vendor_assets/js/feather.min.js"></script>
         
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="/assets/vendor_assets/css/bootstrap/bootstrap.css">
@@ -90,30 +88,5 @@
         <!-- Main JS -->
         <script src="/assets/theme_assets/js/main.js"></script>
         
-        <script>
-            // Initialize Feather icons safely
-            function initFeatherIcons() {
-                if (typeof feather !== 'undefined') {
-                    feather.replace();
-                    console.log('Feather icons initialized successfully');
-                } else {
-                    console.log('Feather library not loaded yet, retrying...');
-                    setTimeout(initFeatherIcons, 100);
-                }
-            }
-            
-            // Try to initialize immediately
-            initFeatherIcons();
-            
-            // Also initialize when DOM is ready
-            document.addEventListener('DOMContentLoaded', function() {
-                setTimeout(initFeatherIcons, 100);
-            });
-            
-            // Initialize when window loads
-            window.addEventListener('load', function() {
-                setTimeout(initFeatherIcons, 200);
-            });
-        </script>
     </body>
 </html>

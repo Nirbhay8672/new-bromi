@@ -6,39 +6,23 @@ const props = defineProps<{
     isCollapsed: boolean;
 }>();
 
-// Initialize Feather icons
-const initializeIcons = () => {
-    nextTick(() => {
-        if (typeof feather !== 'undefined') {
-            feather.replace();
-        }
-    });
-};
-
-onMounted(() => {
-    initializeIcons();
-});
-
-// Reinitialize icons when sidebar state changes
-watch(() => props.isCollapsed, () => {
-    initializeIcons();
-});
+// No need to initialize icons - using Font Awesome classes directly
 
 const mainMenuItems = [
     {
         title: 'Dashboard',
-        icon: 'home',
+        icon: 'fas fa-home',
         active: true,
         href: '/dashboard'
     },
     {
         title: 'Users List',
-        icon: 'users',
+        icon: 'fas fa-users',
         href: '/admin/users'
     },
     {
         title: 'Roles & Permissions',
-        icon: 'shield',
+        icon: 'fas fa-shield-alt',
         href: '/admin/roles'
     }
 ];
@@ -46,22 +30,22 @@ const mainMenuItems = [
 const applicationItems = [
     {
         title: 'Email',
-        icon: 'mail',
+        icon: 'fas fa-envelope',
         href: '/email'
     },
     {
         title: 'Chat',
-        icon: 'message-square',
+        icon: 'fas fa-comments',
         href: '/chat'
     },
     {
         title: 'Calendar',
-        icon: 'calendar',
+        icon: 'fas fa-calendar',
         href: '/calendar'
     },
     {
         title: 'File Manager',
-        icon: 'file',
+        icon: 'fas fa-folder',
         href: '/file-manager'
     }
 ];
@@ -87,7 +71,7 @@ const applicationItems = [
                             :href="item.href" 
                             :class="{ 'active': item.active }"
                         >
-                            <span :data-feather="item.icon" class="nav-icon"></span>
+                            <i :class="item.icon" class="nav-icon"></i>
                             <span class="menu-text">{{ item.title }}</span>
                         </Link>
                     </li>

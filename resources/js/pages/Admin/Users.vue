@@ -254,7 +254,7 @@ const showAlert = (message: string, type: 'success' | 'error') => {
                     <div class="breadcrumb-main d-flex align-items-center justify-content-between">
                         <h4 class="text-capitalize breadcrumb-title mb-0">User Management</h4>
                         <button @click="openAddModal" class="btn btn-primary">
-                            <span data-feather="plus" class="me-2"></span>
+                            <i class="fas fa-plus me-2"></i>
                             Add User
                         </button>
                     </div>
@@ -265,7 +265,7 @@ const showAlert = (message: string, type: 'success' | 'error') => {
             <div class="card border-0 shadow-sm">
                 <div class="card-header bg-white border-bottom">
                     <h5 class="mb-0 d-flex align-items-center">
-                        <span data-feather="users" class="me-2 text-primary"></span>
+                        <i class="fas fa-users me-2 text-primary"></i>
                         Users List
                     </h5>
                 </div>
@@ -311,7 +311,7 @@ const showAlert = (message: string, type: 'success' | 'error') => {
                                         </td>
                                     <td class="border-0">
                                         <div class="d-flex align-items-center">
-                                            <span data-feather="mail" class="me-2 text-muted"></span>
+                                            <i class="fas fa-envelope me-2 text-muted"></i>
                                             <span class="text-dark">{{ user.email || 'No Email' }}</span>
                                         </div>
                                     </td>
@@ -344,7 +344,7 @@ const showAlert = (message: string, type: 'success' | 'error') => {
                                     </td>
                                     <td class="border-0">
                                         <div class="d-flex align-items-center">
-                                            <span data-feather="calendar" class="me-2 text-muted"></span>
+                                            <i class="fas fa-calendar me-2 text-muted"></i>
                                             <span class="text-dark">
                                                 {{ user.created_at ? new Date(user.created_at).toLocaleDateString('en-US', {
                                                     year: 'numeric',
@@ -361,7 +361,7 @@ const showAlert = (message: string, type: 'success' | 'error') => {
                                                 class="btn btn-outline-primary btn-sm"
                                                 title="Edit User"
                                             >
-                                                <span data-feather="edit" class="me-1"></span>
+                                                <i class="fas fa-edit me-1"></i>
                                                 Edit
                                             </button>
                                             <button 
@@ -370,7 +370,7 @@ const showAlert = (message: string, type: 'success' | 'error') => {
                                                 :disabled="user.roles && user.roles.some(role => role.name === 'super-admin')"
                                                 :title="user.roles && user.roles.some(role => role.name === 'super-admin') ? 'Cannot delete super admin' : 'Delete User'"
                                             >
-                                                <span data-feather="trash-2" class="me-1"></span>
+                                                <i class="fas fa-trash me-1"></i>
                                                 Delete
                                             </button>
                                         </div>
@@ -379,7 +379,7 @@ const showAlert = (message: string, type: 'success' | 'error') => {
                                 <tr v-if="props.users.length === 0">
                                     <td colspan="6" class="text-center py-5">
                                         <div class="d-flex flex-column align-items-center">
-                                            <span data-feather="users" class="text-muted mb-3" style="width: 48px; height: 48px;"></span>
+                                            <i class="fas fa-users text-muted mb-3" style="font-size: 48px;"></i>
                                             <h6 class="text-muted">No users found</h6>
                                             <p class="text-muted mb-0">Click "Add User" to create your first user.</p>
                                         </div>

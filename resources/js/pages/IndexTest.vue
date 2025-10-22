@@ -5,10 +5,6 @@ import { onMounted } from 'vue';
 onMounted(() => {
     // Initialize any required JavaScript after component mounts
     setTimeout(() => {
-        if (typeof feather !== 'undefined') {
-            feather.replace();
-        }
-        
         // Initialize charts
         initializeCharts();
     }, 100);

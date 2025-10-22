@@ -22,14 +22,7 @@ import { Label } from '@/components/ui/label';
 
 const passwordInput = ref<InstanceType<typeof Input> | null>(null);
 
-// Initialize Feather icons
-onMounted(() => {
-    nextTick(() => {
-        if (typeof feather !== 'undefined') {
-            feather.replace();
-        }
-    });
-});
+// No need to initialize icons - using Font Awesome classes directly
 </script>
 
 <style scoped>

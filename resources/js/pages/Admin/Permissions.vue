@@ -28,14 +28,7 @@ const formData = ref({
 const formErrors = ref<Record<string, string>>({});
 const isSubmitting = ref(false);
 
-// Initialize Feather icons
-onMounted(() => {
-    nextTick(() => {
-        if (typeof feather !== 'undefined') {
-            feather.replace();
-        }
-    });
-});
+// No need to initialize icons - using Font Awesome classes directly
 
 const openCreateModal = () => {
     editingPermission.value = null;
@@ -173,21 +166,21 @@ const groupPermissions = (permissions: Permission[]) => {
                         <div class="card-header">
                             <div class="d-flex align-items-center justify-content-between">
                                 <h5 class="mb-0">
-                                    <span data-feather="key" class="me-2"></span>
+                                    <i class="fas fa-key me-2"></i>
                                     System Permissions
                                 </h5>
                                 <button 
                                     @click="openCreateModal"
                                     class="btn btn-primary"
                                 >
-                                    <span data-feather="plus" class="me-2"></span>
+                                    <i class="fas fa-plus me-2"></i>
                                     Add Permission
                                 </button>
                             </div>
                         </div>
                         <div class="card-body">
                             <div v-if="props.permissions.length === 0" class="text-center py-5">
-                                <span data-feather="key" class="text-muted mb-3" style="width: 48px; height: 48px;"></span>
+                                <i class="fas fa-key text-muted mb-3" style="font-size: 48px;"></i>
                                 <h6 class="text-muted">No permissions found</h6>
                                 <p class="text-muted mb-0">Click "Add Permission" to create your first permission.</p>
                             </div>
@@ -199,7 +192,7 @@ const groupPermissions = (permissions: Permission[]) => {
                                     class="mb-4"
                                 >
                                     <h6 class="text-muted mb-3 text-uppercase">
-                                        <span data-feather="folder" class="me-2"></span>
+                                        <i class="fas fa-folder me-2"></i>
                                         {{ groupName }} Permissions
                                     </h6>
                                     
@@ -224,7 +217,7 @@ const groupPermissions = (permissions: Permission[]) => {
                                                                 type="button" 
                                                                 data-bs-toggle="dropdown"
                                                             >
-                                                                <span data-feather="more-vertical"></span>
+                                                                <i class="fas fa-ellipsis-v"></i>
                                                             </button>
                                                             <ul class="dropdown-menu">
                                                                 <li>
@@ -232,7 +225,7 @@ const groupPermissions = (permissions: Permission[]) => {
                                                                         @click="openEditModal(permission)"
                                                                         class="dropdown-item"
                                                                     >
-                                                                        <span data-feather="edit" class="me-2"></span>
+                                                                        <i class="fas fa-edit me-2"></i>
                                                                         Edit
                                                                     </button>
                                                                 </li>
@@ -241,7 +234,7 @@ const groupPermissions = (permissions: Permission[]) => {
                                                                         @click="openDeleteModal(permission)"
                                                                         class="dropdown-item text-danger"
                                                                     >
-                                                                        <span data-feather="trash-2" class="me-2"></span>
+                                                                        <i class="fas fa-trash me-2"></i>
                                                                         Delete
                                                                     </button>
                                                                 </li>
@@ -283,7 +276,7 @@ const groupPermissions = (permissions: Permission[]) => {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">
-                            <span data-feather="key" class="me-2"></span>
+                            <i class="fas fa-key me-2"></i>
                             {{ editingPermission ? 'Edit Permission' : 'Create New Permission' }}
                         </h5>
                         <button 
@@ -345,7 +338,7 @@ const groupPermissions = (permissions: Permission[]) => {
                             :disabled="isSubmitting"
                         >
                             <span v-if="isSubmitting" class="spinner-border spinner-border-sm me-2" role="status"></span>
-                            <span data-feather="save" class="me-2"></span>
+                            <i class="fas fa-save me-2"></i>
                             {{ isSubmitting ? 'Saving...' : (editingPermission ? 'Update Permission' : 'Create Permission') }}
                         </button>
                     </div>
@@ -365,7 +358,7 @@ const groupPermissions = (permissions: Permission[]) => {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title text-danger">
-                            <span data-feather="alert-triangle" class="me-2"></span>
+                            <i class="fas fa-exclamation-triangle me-2"></i>
                             Delete Permission
                         </h5>
                         <button 
@@ -377,7 +370,7 @@ const groupPermissions = (permissions: Permission[]) => {
                     <div class="modal-body">
                         <div class="alert alert-warning">
                             <div class="d-flex align-items-start">
-                                <span data-feather="alert-triangle" class="me-2 mt-1"></span>
+                                <i class="fas fa-exclamation-triangle me-2 mt-1"></i>
                                 <div>
                                     <strong>Warning:</strong> This action cannot be undone.
                                     <p class="mb-0 mt-2">
@@ -402,7 +395,7 @@ const groupPermissions = (permissions: Permission[]) => {
                             class="btn btn-danger"
                             @click="deletePermission"
                         >
-                            <span data-feather="trash-2" class="me-2"></span>
+                            <i class="fas fa-trash me-2"></i>
                             Delete Permission
                         </button>
                     </div>

@@ -48,7 +48,6 @@ const msgButtons = document.querySelectorAll('.btn-message');
     let messageIcon = this.dataset.messageicon;
     let messageLoading = this.dataset.messageLoading;
     createMessage(messageType,messageIcon,messageLoading,this.dataset.duration);
-    feather.replace();
     let thismessage = messageCount - 1;
 
     setTimeout(function(){

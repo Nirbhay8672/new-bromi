@@ -78,7 +78,6 @@ const toastButtons = document.querySelectorAll('.btn-toast');
     let toastIcon = this.dataset.toasticon;
     let customClose = this.dataset.customclose;
     createToast(toastType,toastIcon,customClose);
-    feather.replace();
     let thisToast = toastCount - 1;
 
     $('*[data-toast]').on('click',function(){

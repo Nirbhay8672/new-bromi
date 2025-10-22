@@ -35,5 +35,4 @@ $.getJSON("json/icons.json", function (data) {
   );
 
   $(".feIcon-list-box").append(colFe);
-  feather.replace();
 });

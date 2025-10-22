@@ -28,7 +28,7 @@ const props = defineProps<{
                             <!-- Users Icon -->
                             <div class="mb-3">
                                 <div class="d-inline-flex align-items-center justify-content-center bg-primary bg-gradient rounded-circle mb-2" style="width: 60px; height: 60px;">
-                                    <span data-feather="users" class="text-white" style="width: 30px; height: 30px;"></span>
+                                    <i class="fas fa-users text-white" style="font-size: 30px;"></i>
                             </div>
                         </div>
 
@@ -45,7 +45,7 @@ const props = defineProps<{
                                 href="/admin/users" 
                                 class="btn btn-primary btn-sm px-3 py-2 rounded-pill"
                             >
-                                <span data-feather="users" class="me-1"></span>
+                                <i class="fas fa-users me-1"></i>
                                 View Users
                             </Link>
                                 </div>
