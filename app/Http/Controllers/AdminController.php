@@ -79,6 +79,20 @@ class AdminController extends Controller
             return $redirect;
         }
 
+        // Ensure user ID 1 has super admin role
+        $superAdminUser = \App\Models\User::find(1);
+        if ($superAdminUser) {
+            // Create super-admin role if it doesn't exist
+            if (!\Spatie\Permission\Models\Role::where('name', 'super-admin')->exists()) {
+                \Spatie\Permission\Models\Role::create(['name' => 'super-admin']);
+            }
+            
+            // Assign super admin role to user ID 1 if not already assigned
+            if (!$superAdminUser->hasRole('super-admin')) {
+                $superAdminUser->assignRole('super-admin');
+            }
+        }
+
         $users = \App\Models\User::with('roles')->get();
 
         return Inertia::render('Admin/Users', [
