@@ -22,7 +22,7 @@ export default defineConfig({
             },
         }),
     ],
-    base: process.env.ASSET_URL ? process.env.ASSET_URL + '/' : (process.env.NODE_ENV === 'production' ? '/growedge/' : '/'),
+    base: '/',
     build: {
         rollupOptions: {
             output: {
