@@ -52,59 +52,6 @@ const currentPasswordInput = ref<HTMLInputElement | null>(null);
             </div>
 
             <div class="row">
-                <div class="col-lg-3">
-                    <div class="card border-0">
-                        <div class="card-header">
-                            <h6>Settings Menu</h6>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="settings-menu">
-                                <ul class="nav nav-tabs flex-column" role="tablist">
-                                    <li class="nav-item">
-                                        <Link 
-                                            href="/settings/profile" 
-                                            class="nav-link"
-                                            :class="{ 'active': $page.url === '/settings/profile' }"
-                                        >
-                                            <span data-feather="user" class="nav-icon"></span>
-                                            Profile Information
-                                        </Link>
-                                    </li>
-                                    <li class="nav-item">
-                                        <Link 
-                                            href="/settings/password" 
-                                            class="nav-link active"
-                                            :class="{ 'active': $page.url === '/settings/password' }"
-                                        >
-                                            <span data-feather="lock" class="nav-icon"></span>
-                                            Password
-                                        </Link>
-                                    </li>
-                                    <li class="nav-item">
-                                        <Link 
-                                            href="/settings/two-factor" 
-                                            class="nav-link"
-                                            :class="{ 'active': $page.url === '/settings/two-factor' }"
-                                        >
-                                            <span data-feather="shield" class="nav-icon"></span>
-                                            Two-Factor Authentication
-                                        </Link>
-                                    </li>
-                                    <li class="nav-item">
-                                        <Link 
-                                            href="/settings/appearance" 
-                                            class="nav-link"
-                                            :class="{ 'active': $page.url === '/settings/appearance' }"
-                                        >
-                                            <span data-feather="palette" class="nav-icon"></span>
-                                            Appearance
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="col-lg-9">
                     <div class="card border-0 shadow-sm">

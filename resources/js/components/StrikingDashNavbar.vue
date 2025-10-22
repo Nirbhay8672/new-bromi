@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Link } from '@inertiajs/vue3';
+import { Link, router } from '@inertiajs/vue3';
+import { logout } from '@/routes';
 
 defineProps<{
     toggleSidebar: () => void;
@@ -26,6 +27,10 @@ const toggleNotification = () => {
 
 const toggleLanguage = () => {
     isLanguageOpen.value = !isLanguageOpen.value;
+};
+
+const handleLogout = () => {
+    router.post(logout.url());
 };
 </script>
 
@@ -211,30 +216,10 @@ const toggleLanguage = () => {
                                                 <span data-feather="shield"></span> Two-Factor Auth
                                             </Link>
                                         </li>
-                                        <li>
-                                            <Link href="/settings/appearance">
-                                                <span data-feather="palette"></span> Appearance
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/billing">
-                                                <span data-feather="key"></span> Billing
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/activity">
-                                                <span data-feather="users"></span> Activity
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/help">
-                                                <span data-feather="bell"></span> Help
-                                            </Link>
-                                        </li>
                                     </ul>
-                                    <Link href="/logout" class="nav-author__signout">
+                                    <button @click="handleLogout" class="nav-author__signout">
                                         <span data-feather="log-out"></span> Sign Out
-                                    </Link>
+                                    </button>
                                 </div>
                             </div>
                         </div>

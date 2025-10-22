@@ -67,26 +67,6 @@ const applicationItems = [
                             <span class="menu-text">{{ item.title }}</span>
                         </Link>
                     </li>
-                    
-                    <li class="menu-title m-top-30">
-                        <span>Applications</span>
-                    </li>
-                    
-                    <li 
-                        v-for="item in applicationItems" 
-                        :key="item.title"
-                        :class="{ 
-                            'active': item.active 
-                        }"
-                    >
-                        <Link 
-                            :href="item.href" 
-                            :class="{ 'active': item.active }"
-                        >
-                            <span :data-feather="item.icon" class="nav-icon"></span>
-                            <span class="menu-text">{{ item.title }}</span>
-                        </Link>
-                    </li>
                 </ul>
             </div>
         </div>
