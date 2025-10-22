@@ -26,20 +26,7 @@ export default defineConfig({
     build: {
         rollupOptions: {
             output: {
-                assetFileNames: (assetInfo) => {
-                    const info = assetInfo.name.split('.');
-                    const ext = info[info.length - 1];
-                    if (/\.(png|jpe?g|gif|svg|ico|webp)$/i.test(assetInfo.name)) {
-                        return `assets/images/[name]-[hash][extname]`;
-                    }
-                    if (/\.(css)$/i.test(assetInfo.name)) {
-                        return `assets/css/[name]-[hash][extname]`;
-                    }
-                    if (/\.(js)$/i.test(assetInfo.name)) {
-                        return `assets/js/[name]-[hash][extname]`;
-                    }
-                    return `assets/[name]-[hash][extname]`;
-                },
+                assetFileNames: 'assets/[name]-[hash][extname]',
             },
         },
     },
@@ -47,5 +34,10 @@ export default defineConfig({
         hmr: {
             host: 'localhost',
         },
+    },
+    // Define global constants for asset handling
+    define: {
+        __ASSET_URL__: JSON.stringify(process.env.ASSET_URL || (process.env.VITE_APP_ENV === 'local' ? '' : '/growedge/public')),
+        __APP_URL__: JSON.stringify(process.env.APP_URL || (process.env.VITE_APP_ENV === 'local' ? 'https://new-bromi.test' : 'https://updates.mrweb.co.in')),
     },
 });

@@ -9,7 +9,7 @@ import { request } from '@/routes/password';
 import { Form, Head, Link } from '@inertiajs/vue3';
 import { LoaderCircle, Crown, Shield } from 'lucide-vue-next';
 import { ref, onMounted, nextTick } from 'vue';
-import { assets, getCommonAsset } from '@/lib/assets'; 
+import { assets, getCommonAsset, asset, secure_asset, testAssetUrls } from '@/lib/assets'; 
 
 defineProps<{
     status?: string;
@@ -44,6 +44,11 @@ const loginAsAdmin = () => {
         }
     }, 100);
 };
+
+// Debug asset URLs on component mount
+onMounted(() => {
+    testAssetUrls();
+});
 </script>
 
 <template>

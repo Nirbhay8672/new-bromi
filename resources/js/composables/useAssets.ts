@@ -1,80 +1,65 @@
 /**
  * Asset management composable for proper asset loading
- * Handles both development and production environments
+ * Handles both development and production environments using Laravel-style asset() function
  */
+
+import { asset } from '@/lib/assets';
 
 export function useAssets() {
     /**
-     * Get the correct asset URL for any asset
+     * Get the correct asset URL for any asset - Laravel style
      * @param path - The asset path relative to public directory
      * @returns The correct asset URL
      */
     const getAssetUrl = (path: string): string => {
-        // Remove leading slash if present
-        const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-        
-        // Check if it's a Vite-processed asset (has hash in name)
-        if (cleanPath.includes('assets/') && cleanPath.includes('-')) {
-            // This is a Vite-processed asset, use the base URL
-            const basePath = import.meta.env.BASE_URL || '/';
-            return `${basePath}${cleanPath}`;
-        }
-        
-        // For static assets in public directory
-        if (import.meta.env.DEV) {
-            return `/${cleanPath}`;
-        }
-        
-        // In production, use the configured base path
-        const basePath = import.meta.env.BASE_URL || '/growedge/';
-        return `${basePath}${cleanPath}`;
+        return asset(path);
     };
 
     /**
-     * Get image asset URL
+     * Get image asset URL - Laravel style
      * @param path - Image path relative to public directory
      * @returns The correct image URL
      */
     const getImageUrl = (path: string): string => {
-        return getAssetUrl(path);
+        return asset(path);
     };
 
     /**
-     * Get CSS asset URL
+     * Get CSS asset URL - Laravel style
      * @param path - CSS path relative to public directory
      * @returns The correct CSS URL
      */
     const getCssUrl = (path: string): string => {
-        return getAssetUrl(path);
+        return asset(path);
     };
 
     /**
-     * Get JavaScript asset URL
+     * Get JavaScript asset URL - Laravel style
      * @param path - JS path relative to public directory
      * @returns The correct JS URL
      */
     const getJsUrl = (path: string): string => {
-        return getAssetUrl(path);
+        return asset(path);
     };
 
     /**
-     * Get vendor asset URL (for assets in public/assets/vendor_assets/)
+     * Get vendor asset URL - Laravel style
      * @param path - Asset path relative to vendor_assets directory
      * @returns The correct vendor asset URL
      */
     const getVendorAssetUrl = (path: string): string => {
         const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-        return getAssetUrl(`assets/vendor_assets/${cleanPath}`);
+        return asset(`assets/vendor_assets/${cleanPath}`);
     };
 
     /**
-     * Get theme asset URL (for assets in public/assets/theme_assets/)
+     * Get theme asset URL - Laravel style
      * @param path - Asset path relative to theme_assets directory
      * @returns The correct theme asset URL
      */
     const getThemeAssetUrl = (path: string): string => {
         const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-        return getAssetUrl(`assets/theme_assets/${cleanPath}`);
+        return asset(`assets/theme_assets/${cleanPath}`);
     };
 
     return {
