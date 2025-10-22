@@ -91,16 +91,28 @@
         <script src="/assets/theme_assets/js/main.js"></script>
         
         <script>
-            // Initialize Feather icons
-            feather.replace();
+            // Initialize Feather icons safely
+            function initFeatherIcons() {
+                if (typeof feather !== 'undefined') {
+                    feather.replace();
+                    console.log('Feather icons initialized successfully');
+                } else {
+                    console.log('Feather library not loaded yet, retrying...');
+                    setTimeout(initFeatherIcons, 100);
+                }
+            }
             
-            // Reinitialize icons after Vue components mount
+            // Try to initialize immediately
+            initFeatherIcons();
+            
+            // Also initialize when DOM is ready
             document.addEventListener('DOMContentLoaded', function() {
-                setTimeout(() => {
-                    if (typeof feather !== 'undefined') {
-                        feather.replace();
-                    }
-                }, 100);
+                setTimeout(initFeatherIcons, 100);
+            });
+            
+            // Initialize when window loads
+            window.addEventListener('load', function() {
+                setTimeout(initFeatherIcons, 200);
             });
         </script>
     </body>
