@@ -27,7 +27,7 @@ export function asset(path: string): string {
     const isLocal = import.meta.env.VITE_APP_ENV === 'local' || import.meta.env.DEV;
     
     const baseUrl = (typeof __APP_URL__ !== 'undefined' ? __APP_URL__ : '') || 
-                   (isLocal ? 'https://new-bromi.test' : 'https://updates.mrweb.co.in');
+                   (isLocal ? 'https://new-bromi.test' : 'https://updates.mrweb.co.in/growedge');
     
     const assetUrl = (typeof __ASSET_URL__ !== 'undefined' ? __ASSET_URL__ : '') || 
                     (isLocal ? '' : '/public');
@@ -190,7 +190,7 @@ export function secure_asset(path: string): string {
 export function url(path: string = ''): string {
     const isLocal = import.meta.env.VITE_APP_ENV === 'local' || import.meta.env.DEV;
     const baseUrl = (typeof __APP_URL__ !== 'undefined' ? __APP_URL__ : '') || 
-                   (isLocal ? 'https://new-bromi.test' : 'https://updates.mrweb.co.in');
+                   (isLocal ? 'https://new-bromi.test' : 'https://updates.mrweb.co.in/growedge');
     const cleanPath = path.startsWith('/') ? path.slice(1) : path;
     return cleanPath ? `${baseUrl}/${cleanPath}` : baseUrl;
 }
@@ -216,5 +216,7 @@ export function testAssetUrls(): void {
     console.log('Common asset logo main:', getCommonAsset('logo', 'main'));
     console.log('Common asset illustrations signup:', getCommonAsset('illustrations', 'signup'));
     console.log('');
-    console.log('Expected Production URL: https://updates.mrweb.co.in/public/logo4.png');
+    console.log('Expected Production URLs:');
+    console.log('- Asset: https://updates.mrweb.co.in/growedge/public/logo4.png');
+    console.log('- API/Login: https://updates.mrweb.co.in/growedge/login');
 }

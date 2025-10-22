@@ -22,7 +22,7 @@ export default defineConfig({
             },
         }),
     ],
-    base: process.env.ASSET_URL ? process.env.ASSET_URL + '/' : (process.env.NODE_ENV === 'production' ? '/public/' : '/'),
+    base: process.env.ASSET_URL ? process.env.ASSET_URL + '/' : (process.env.NODE_ENV === 'production' ? '/growedge/' : '/'),
     build: {
         rollupOptions: {
             output: {
@@ -38,6 +38,6 @@ export default defineConfig({
     // Define global constants for asset handling
     define: {
         __ASSET_URL__: JSON.stringify(process.env.ASSET_URL || (process.env.VITE_APP_ENV === 'local' ? '' : '/public')),
-        __APP_URL__: JSON.stringify(process.env.APP_URL || (process.env.VITE_APP_ENV === 'local' ? 'https://new-bromi.test' : 'https://updates.mrweb.co.in')),
+        __APP_URL__: JSON.stringify(process.env.APP_URL || (process.env.VITE_APP_ENV === 'local' ? 'https://new-bromi.test' : 'https://updates.mrweb.co.in/growedge')),
     },
 });
