@@ -65,6 +65,7 @@
     <body>
         @inertia
         
+        
         <!-- jQuery -->
         <script src="/assets/vendor_assets/js/jquery/jquery-3.5.1.min.js"></script>
         
