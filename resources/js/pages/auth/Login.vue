@@ -8,7 +8,7 @@ import { register } from '@/routes';
 import { request } from '@/routes/password';
 import { Form, Head, Link } from '@inertiajs/vue3';
 import { LoaderCircle, Crown, Shield } from 'lucide-vue-next';
-import { ref } from 'vue';
+import { ref, onMounted, nextTick } from 'vue'; 
 
 defineProps<{
     status?: string;
@@ -17,6 +17,33 @@ defineProps<{
 
 const email = ref('');
 const password = ref('');
+
+// Initialize Feather icons
+onMounted(() => {
+    nextTick(() => {
+        // Wait for feather to be available
+        const initFeather = () => {
+            if (typeof feather !== 'undefined') {
+                feather.replace();
+                console.log('Feather icons initialized on login page');
+            } else {
+                // Retry after a short delay if feather is not yet loaded
+                setTimeout(initFeather, 100);
+            }
+        };
+        initFeather();
+    });
+});
+
+// Also try to initialize when the window loads
+if (typeof window !== 'undefined') {
+    window.addEventListener('load', () => {
+        if (typeof feather !== 'undefined') {
+            feather.replace();
+            console.log('Feather icons initialized on window load');
+        }
+    });
+}
 
 const loginAsSuperAdmin = () => {
     email.value = 'superadmin@gmail.com';
