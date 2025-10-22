@@ -38,8 +38,8 @@ const props = defineProps<{
                             <!-- User Count -->
                             <div class="h2 text-primary mb-3 fw-bold">
                                 {{ props.totalUsers }}
-                            </div>
-                            
+                    </div>
+
                             <!-- Action Button -->
                             <Link 
                                 href="/admin/users" 
@@ -59,7 +59,7 @@ const props = defineProps<{
                             <div class="text-center">
                                 <h4 class="text-muted mb-3">Welcome to Dashboard</h4>
                                 <p class="text-muted mb-0">Manage your application from here</p>
-                            </div>
+                                </div>
                             </div>
                         </div>
                     </div>

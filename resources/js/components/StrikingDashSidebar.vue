@@ -35,6 +35,11 @@ const mainMenuItems = [
         title: 'Users List',
         icon: 'users',
         href: '/admin/users'
+    },
+    {
+        title: 'Roles & Permissions',
+        icon: 'shield',
+        href: '/admin/roles'
     }
 ];
 

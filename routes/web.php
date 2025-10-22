@@ -28,8 +28,6 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])
         ->name('dashboard');
     
-    Route::get('/roles', [App\Http\Controllers\AdminController::class, 'roles'])
-        ->name('roles');
     
     Route::get('/permissions', [App\Http\Controllers\AdminController::class, 'permissions'])
         ->name('permissions');
@@ -46,6 +44,14 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     
     Route::delete('/users/{user}', [App\Http\Controllers\AdminController::class, 'deleteUser'])
         ->name('users.delete');
+    
+    // Role CRUD routes
+    Route::resource('roles', App\Http\Controllers\RoleController::class);
+    Route::post('/roles/{role}/sync-permissions', [App\Http\Controllers\RoleController::class, 'syncPermissions'])
+        ->name('roles.sync-permissions');
+    
+    // Permission CRUD routes
+    Route::resource('permissions', App\Http\Controllers\PermissionController::class);
     
     // Role management actions
     Route::post('/assign-role', [App\Http\Controllers\AdminController::class, 'assignRole'])

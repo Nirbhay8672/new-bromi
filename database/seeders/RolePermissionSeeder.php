@@ -73,59 +73,98 @@ class RolePermissionSeeder extends Seeder
             
             // Role assignment permissions
             'assign-roles',
-            'remove-roles',
-            'assign-permissions',
-            'revoke-permissions',
-            
-            // User management permissions
-            'impersonate-users',
-            'suspend-users',
-            'activate-users',
+            'revoke-roles',
+            'sync-permissions',
             
             // System permissions
-            'view-system-logs',
-            'manage-system-settings',
-            'backup-data',
-            'restore-data',
+            'manage-system',
+            'view-logs',
+            'manage-backups',
+            'system-maintenance',
         ];
 
         foreach ($permissions as $permission) {
-            Permission::create(['name' => $permission]);
+            Permission::create(['name' => $permission, 'guard_name' => 'web']);
         }
 
         // Create roles
-        $superAdminRole = Role::create(['name' => 'super-admin']);
-        $adminRole = Role::create(['name' => 'admin']);
+        $superAdminRole = Role::create(['name' => 'super-admin', 'guard_name' => 'web']);
+        $adminRole = Role::create(['name' => 'admin', 'guard_name' => 'web']);
+        $userRole = Role::create(['name' => 'user', 'guard_name' => 'web']);
 
         // Assign all permissions to super-admin
         $superAdminRole->givePermissionTo(Permission::all());
 
-        // Assign limited permissions to admin
-        $adminRole->givePermissionTo([
+        // Assign specific permissions to admin
+        $adminPermissions = [
             'view-dashboard',
             'read users',
+            'update users',
+            'manage-users',
             'read roles',
             'read permissions',
-            'manage-users', // Can access user management page
-        ]);
+            'view-profile',
+            'update-profile',
+            'change-password',
+            'view-settings',
+            'access-admin-panel',
+            'view-admin-dashboard',
+        ];
+        $adminRole->givePermissionTo($adminPermissions);
 
-        // Create users
-        $superAdmin = User::create([
-            'name' => 'Super Administrator',
-            'email' => 'superadmin@gmail.com',
-            'password' => Hash::make('password'),
-            'email_verified_at' => now(),
-        ]);
+        // Assign basic permissions to user
+        $userPermissions = [
+            'view-dashboard',
+            'view-profile',
+            'update-profile',
+            'change-password',
+            'view-settings',
+        ];
+        $userRole->givePermissionTo($userPermissions);
 
-        $admin = User::create([
-            'name' => 'Administrator',
-            'email' => 'admin@gmail.com',
-            'password' => Hash::make('password'),
-            'email_verified_at' => now(),
-        ]);
+        // Create a super admin user if it doesn't exist
+        $superAdmin = User::firstOrCreate(
+            ['email' => 'superadmin@gmail.com'],
+            [
+                'name' => 'Super Admin',
+                'password' => Hash::make('password'),
+                'email_verified_at' => now(),
+            ]
+        );
 
-        // Assign roles to users
-        $superAdmin->assignRole('super-admin');
-        $admin->assignRole('admin');
+        // Assign super-admin role to the user
+        if (!$superAdmin->hasRole('super-admin')) {
+            $superAdmin->assignRole('super-admin');
+        }
+
+        // Create an admin user if it doesn't exist
+        $admin = User::firstOrCreate(
+            ['email' => 'admin@gmail.com'],
+            [
+                'name' => 'Admin User',
+                'password' => Hash::make('password'),
+                'email_verified_at' => now(),
+            ]
+        );
+
+        // Assign admin role to the user
+        if (!$admin->hasRole('admin')) {
+            $admin->assignRole('admin');
+        }
+
+        // Create a regular user if it doesn't exist
+        $user = User::firstOrCreate(
+            ['email' => 'user@example.com'],
+            [
+                'name' => 'Regular User',
+                'password' => Hash::make('password'),
+                'email_verified_at' => now(),
+            ]
+        );
+
+        // Assign user role to the user
+        if (!$user->hasRole('user')) {
+            $user->assignRole('user');
+        }
     }
 }

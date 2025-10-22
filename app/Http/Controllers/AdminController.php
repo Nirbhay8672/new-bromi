@@ -35,39 +35,7 @@ class AdminController extends Controller
         return Inertia::render('Admin/Dashboard');
     }
 
-    /**
-     * Display roles management page
-     */
-    public function roles(): Response|RedirectResponse
-    {
-        // Check if user has permission to manage roles
-        if ($redirect = $this->requirePermission('manage-roles')) {
-            return $redirect;
-        }
 
-        $roles = Role::with('permissions')->get();
-
-        return Inertia::render('Admin/Roles', [
-            'roles' => $roles
-        ]);
-    }
-
-    /**
-     * Display permissions management page
-     */
-    public function permissions(): Response|RedirectResponse
-    {
-        // Check if user has permission to manage permissions
-        if ($redirect = $this->requirePermission('manage-permissions')) {
-            return $redirect;
-        }
-
-        $permissions = Permission::all();
-
-        return Inertia::render('Admin/Permissions', [
-            'permissions' => $permissions
-        ]);
-    }
 
     /**
      * Display users management page
